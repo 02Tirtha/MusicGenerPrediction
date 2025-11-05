@@ -99,6 +99,12 @@ The app interface includes:
 - **Song feature inputs**
 - **Genre prediction outputs**
 - **CSV upload support**
+---
+## 🎉 Live Demo
+
+The app is deployed and accessible online:
+
+[🌐 View Live Demo](https://musicgenerprediction.streamlit.app/)
 
 ---
 ## 🤝 Contributing
