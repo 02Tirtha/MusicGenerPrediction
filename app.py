@@ -6,25 +6,37 @@ import os
 import gdown
 
 # -------------------------------
-# File download / load logic
+# File IDs from Google Drive
 # -------------------------------
-MODEL_ID = "1qcccO44Q7-zZqlWrlhEsCtmbLq0FzjVi"
+FILES = {
+    "stack_model_new.pkl": "1qcccO44Q7-zZqlWrlhEsCtmbLq0FzjVi",
+    "label_encoder_new.pkl": "1X95MRASmvGpoWrR-uZVAWvof594GJgA-",
+    "scaler_new.pkl": "1XVtvxTkehGu2xTPwVvZgVx5NFgT4-x8B",
+    "imputer.pkl": "1sh-t2_cMguowwwxobfsuCcbp7I446Y20"
+}
+
+# -------------------------------
+# File paths
+# -------------------------------
 MODEL_PATH = "stack_model_new.pkl"
 ENCODER_PATH = "label_encoder_new.pkl"
 SCALER_PATH = "scaler_new.pkl"
 IMPUTER_PATH = "imputer.pkl"
 
+# -------------------------------
+# Function to download file if missing
+# -------------------------------
 def download_file(file_id, output_path):
     if not os.path.exists(output_path):
         url = f"https://drive.google.com/uc?export=download&id={file_id}"
         st.info(f"Downloading {output_path} ...")
         gdown.download(url, output_path, quiet=True)
-    # else:
-    #     st.write(f"{output_path} already exists.")
 
-# Download all required files if missing
-download_file(MODEL_ID, MODEL_PATH)
-# Add download_file calls for ENCODER_PATH, SCALER_PATH, IMPUTER_PATH if you have them on Drive
+# -------------------------------
+# Download all required files
+# -------------------------------
+for fname, file_id in FILES.items():
+    download_file(file_id, fname)
 
 # -------------------------------
 # Load saved objects
